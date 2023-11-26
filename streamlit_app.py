@@ -2,9 +2,7 @@ import streamlit as st
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
-from PIL import Image
 from streamlit_option_menu import option_menu
-import base64
 from serpapi import GoogleSearch
 
 load_dotenv()
@@ -68,7 +66,7 @@ These are just a taste of Italy's incredible destinations! Whether you seek hist
 
 #%% FOR FOODS
 
-system_prompt3 = """ You are a virtual guide assistant who knows about the most popular food in the world, and your responses should be attractive, energetic, funny, and use emojis. List at least five foods. Make sure in English."""
+system_prompt3 = """ You are a virtual guide assistant who knows about the most popular food in the world, and your responses should be attractive, energetic, funny, and use emojis. List at least ten foods. Make sure in English."""
 
 question3 = """
 tell me about best food in spain
@@ -168,7 +166,7 @@ def food_ai(msg):
                     },
                     {
                         "role": "user",
-                        "content": f'{msg} in the list'
+                        "content": f'{msg}'
                     }
         ],
         max_tokens = 1000,
@@ -182,13 +180,7 @@ def food_ai(msg):
 #%%
 
 #%%
-file_path =r"C:\Users\salma\Desktop\10) SHRDC - AI AND ML\7) GPT\OpenAI\salman\background.png"
-image = Image.open(file_path)
-
-#%%
 def homepage():
-    # Background image
-    st.image(image)
 
     # Content of the page
     header = st.container()
@@ -278,20 +270,11 @@ def tourism_page():
         attraction_question = st.text_input("Ask a city/country:", "", placeholder="e.g. Milan, Italy")
         attraction_submit = st.form_submit_button('Get TravelMate AI Response')
 
+    user_input2 = f'Attraction places for {attraction_question} in english'
+
     if attraction_submit:
-        attraction_answer = attraction_place_ai(attraction_question)
-        st.text_area("TravelMate AI Response:", attraction_answer, height=1000)
-
-    # Image search part
-    st.markdown("<h3 style='font-size: 30px;'>Image Search Results</h3>", unsafe_allow_html=True)
-    with st.form('image_search_form'):
-        search_query = st.text_input("Enter an image search query:", "")
-        image_search_submit = st.form_submit_button('Search Images')
-
-    if image_search_submit:
-        # Set up the search parameters for image search
         params = {
-            "q": search_query,
+            "q": user_input2,
             "api_key": serpapi_Api_key,
             "engine": "google_images",
             "num": 10,
@@ -305,10 +288,10 @@ def tourism_page():
         image_results = results.get("images_results", [])
 
         # Display the results in Streamlit, limit to 4 images
-        st.subheader(f"Image Search Results for: {search_query}")
+        st.subheader(f"Image Search Results for: {user_input2}")
 
         for index, result in enumerate(image_results, start=1):
-            if index > 4:
+            if index > 2:
                 break  # Break out of the loop after displaying 4 images
             image_url = result.get("original", None)
             if image_url:
@@ -316,6 +299,9 @@ def tourism_page():
                 st.write("---")
             else:
                 st.warning(f"No image URL found for result {index}")
+        attraction_answer = attraction_place_ai(user_input2)
+        st.text_area("TravelMate AI Response:", attraction_answer, height=1000)
+
 
 #%%
 def food_page():
@@ -338,17 +324,21 @@ def food_page():
         food_question = st.text_input("Ask a city/country:", "", placeholder="e.g. Barcelona,Spain")
         food_submit = st.form_submit_button('Get TravelMate AI Response')
 
+    user_input3 = f'List best recommendation foods in {food_question} in english'
+
     if food_submit:
-        food_answer = food_ai(food_question)
+        food_answer = food_ai(user_input3)
         st.text_area("TravelMate AI Response:", food_answer, height=1000)
+
 #%%
 def main():
     st.set_page_config(
-       page_title="TravelMate AI",
-       page_icon="✈️",
+        page_title="TravelMate AI",
+        page_icon="✈️",
+
     )
     
-    #sidebar
+    # Sidebar
     sb_style = """
     <style>
         .sidebar-title {
@@ -356,26 +346,36 @@ def main():
             font-family: 'Baskerville', sans-serif;
             text-align: center;
             color: #2B3A67;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
     """
     st.sidebar.markdown(sb_style, unsafe_allow_html=True)
     st.sidebar.markdown('<span style="color: #f8f8ff;" class="sidebar-title"><strong>TravelMate AI ✈️</strong></span>', unsafe_allow_html=True)
 
-
     page_functions = {
-       "🏡 Home": homepage,
-       "🏛️ History": history_page,
-       "🏞️ Tourism Spots": tourism_page,
-       "🍔 Food Hunting": food_page,
-       "📅 Travel Planner": history_page,
+        "🏡 Home": homepage,
+        "🏛️ History": history_page,
+        "🏞️ Tourism Spots": tourism_page,
+        "🍔 Food Hunting": food_page,
+        "📅 Travel Planner": history_page,
     }
 
     with st.sidebar:
         selected_page = option_menu(menu_title="Options", options=list(page_functions.keys()), icons=['.', '.', '.', '.', '.'], default_index=0)
 
     if selected_page in page_functions:
-       page_functions[selected_page]()
+        page_functions[selected_page]()
 
 if __name__ == "__main__":
     main()
