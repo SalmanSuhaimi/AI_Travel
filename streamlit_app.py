@@ -2,7 +2,6 @@ import streamlit as st
 import os
 from openai import OpenAI
 from streamlit_option_menu import option_menu
-from serpapi import GoogleSearch
 
 serpapi_Api_key = st.secrets('SERPAPI_API_KEY')
 openai_api_key = st.secrets["OPENAI_API_KEY"]
