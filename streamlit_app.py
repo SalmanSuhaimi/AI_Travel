@@ -319,20 +319,33 @@ def serpapi_image_search(query, num_results=5):
     else:
         st.warning("No relevant images found.")
         return []
-#%%
-st.set_page_config(
-    page_title="Your App Title",
-    page_icon=":rocket:",
-    layout="wide",  # You can change the layout based on your requirements
-    initial_sidebar_state="expanded",
-    background_image="https://github.com/SalmanSuhaimi/AI_Travel/blob/548b719179f44c760120c173615538df2c3f5cee/bg.png",  # Replace with your background image URL
-)
+
 #%%
 def homepage():
-    # Content of the page
     header = st.container()
     description = st.container()
+    
+    #background
+    bg_pic = """
+    <style>
+    [data-testid="stAppViewContainer"] {
+    background-image: URL("https://github.com/SalmanSuhaimi/AI_Travel/blob/548b719179f44c760120c173615538df2c3f5cee/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    }
+    </style>
 
+    <style>
+    [data-testid="stHeader"] {
+    background-image: url("https://github.com/SalmanSuhaimi/AI_Travel/blob/548b719179f44c760120c173615538df2c3f5cee/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    }
+    </style>
+    """
+    st.markdown(bg_pic, unsafe_allow_html=True)
+
+    
     h1_style = """
     <style>
         .app-title {
