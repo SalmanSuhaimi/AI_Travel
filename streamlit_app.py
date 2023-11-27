@@ -329,10 +329,6 @@ background_image_url = "https://raw.githubusercontent.com/SalmanSuhaimi/AI_Trave
 def homepage():
 # Set the page configuration with the background image
     st.set_page_config(
-        page_title="Your App Title",
-        page_icon=":rocket:",
-        layout="wide",
-        initial_sidebar_state="expanded",
         background_image=background_image_url,
     )
 
