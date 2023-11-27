@@ -325,27 +325,6 @@ def homepage():
     header = st.container()
     description = st.container()
     
-    #background
-    bg_pic = """
-    <style>
-    [data-testid="stAppViewContainer"] {
-    background-image: URL("https://github.com/SalmanSuhaimi/AI_Travel/blob/548b719179f44c760120c173615538df2c3f5cee/bg.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    }
-    </style>
-
-    <style>
-    [data-testid="stHeader"] {
-    background-image: url("https://github.com/SalmanSuhaimi/AI_Travel/blob/548b719179f44c760120c173615538df2c3f5cee/bg.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    }
-    </style>
-    """
-    st.markdown(bg_pic, unsafe_allow_html=True)
-
-    
     h1_style = """
     <style>
         .app-title {
