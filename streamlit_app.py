@@ -327,7 +327,8 @@ def homepage():
             page_icon=":rocket:",
             layout="wide",
         initial_sidebar_state="expanded",
-        background_image=("https://raw.githubusercontent.com/SalmanSuhaimi/AI_Travel/main/bg.png",)
+        background_image=("https://raw.githubusercontent.com/SalmanSuhaimi/AI_Travel/main/bg.png",
+        )
     
     header = st.container()
     description = st.container()
