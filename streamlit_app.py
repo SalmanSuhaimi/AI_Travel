@@ -328,10 +328,7 @@ background_image_url = "https://raw.githubusercontent.com/SalmanSuhaimi/AI_Trave
 
 def homepage():
 # Set the page configuration with the background image
-    st.set_page_config(
-        background_image=background_image_url,
-    )
-
+    
     header = st.container()
     description = st.container()
     
@@ -514,6 +511,7 @@ def main():
     st.set_page_config(
         page_title="TravelMate AI",
         page_icon="✈️",
+        background_image=background_image_url,
     )
     
     # Sidebar
@@ -557,4 +555,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-# %%
