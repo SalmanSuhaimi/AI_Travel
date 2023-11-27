@@ -361,7 +361,7 @@ def homepage():
     with header:
        st.markdown(h1_style, unsafe_allow_html=True)
        st.markdown(f"""<div style='text-align: center;'>![GIF]({github_gif_url})</div>""",unsafe_allow_html=True)
-	   st.markdown("""<h1 class="app-title"><strong>TravelMate AI</strong></h1>""", unsafe_allow_html=True)
+       st.markdown("""<h1 class="app-title"><strong>TravelMate AI</strong></h1>""", unsafe_allow_html=True)
     
     #subheader
     with description:
