@@ -341,7 +341,7 @@ def homepage():
             font-family: 'Roboto', sans-serif;
             text-align: center;
             color: #2B3A67;
-            margin-top: 80px;
+            margin-top: 50px;
             margin-bottom: 20px;
             white-space: nowrap;
         }
