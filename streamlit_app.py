@@ -331,7 +331,10 @@ def homepage():
     
     header = st.container()
     description = st.container()
-    
+
+    github_gif_url = "https://raw.githubusercontent.com/SalmanSuhaimi/AI_Travel/main/giphy.gif"
+    st.image(github_gif_url, use_container_width=True)
+
     h1_style = """
     <style>
         .app-title {
@@ -511,7 +514,6 @@ def main():
     st.set_page_config(
         page_title="TravelMate AI",
         page_icon="✈️",
-        background_image=background_image_url,
     )
     
     # Sidebar
