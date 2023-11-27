@@ -321,10 +321,12 @@ def serpapi_image_search(query, num_results=5):
         return []
 
 #%%
-def homepage():
+
     # Replace this URL with the raw URL of your hosted image on GitHub
 background_image_url = "https://raw.githubusercontent.com/SalmanSuhaimi/AI_Travel/main/bg.png"
+#%%
 
+def homepage():
 # Set the page configuration with the background image
 st.set_page_config(
     page_title="Your App Title",
