@@ -320,30 +320,18 @@ def serpapi_image_search(query, num_results=5):
         st.warning("No relevant images found.")
         return []
 #%%
-
+st.set_page_config(
+    page_title="Your App Title",
+    page_icon=":rocket:",
+    layout="wide",  # You can change the layout based on your requirements
+    initial_sidebar_state="expanded",
+    background_image="https://github.com/SalmanSuhaimi/AI_Travel/blob/548b719179f44c760120c173615538df2c3f5cee/bg.png",  # Replace with your background image URL
+)
+#%%
 def homepage():
     # Content of the page
     header = st.container()
     description = st.container()
-
-    # File uploader to allow the user to upload a background image
-    uploaded_file = st.file_uploader("bg.png", type=["jpg", "jpeg", "png"])
-
-    # Custom CSS to set the background image
-    custom_css = """
-        <style>
-            body {
-                background-size: cover;
-                background-repeat: no-repeat;
-            }
-        </style>
-    """
-
-    # Use st.markdown to inject the custom CSS
-    st.markdown(custom_css, unsafe_allow_html=True)
-
-    # Use st.markdown to inject the custom CSS
-    st.markdown(custom_css, unsafe_allow_html=True)
 
     h1_style = """
     <style>
