@@ -327,6 +327,22 @@ def homepage():
     header = st.container()
     description = st.container()
 
+    background_image_url = "![bg](https://github.com/SalmanSuhaimi/AI_Travel/assets/148429853/e0dc343a-0794-4209-9b19-560c831bf98c)"
+
+    # Custom CSS to set the background image
+    custom_css = f"""
+        <style>
+            body {{
+                background-image: url('{background_image_url}');
+                background-size: cover;
+                background-repeat: no-repeat;
+            }}
+        </style>
+    """
+
+    # Use st.markdown to inject the custom CSS
+    st.markdown(custom_css, unsafe_allow_html=True)
+
     h1_style = """
     <style>
         .app-title {
