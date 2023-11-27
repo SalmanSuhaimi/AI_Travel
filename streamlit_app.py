@@ -327,7 +327,7 @@ def homepage():
     header = st.container()
     description = st.container()
 
-    background_image_url = "![bg](https://github.com/SalmanSuhaimi/AI_Travel/assets/148429853/e0dc343a-0794-4209-9b19-560c831bf98c)"
+    background_image_url = "https://github.com/SalmanSuhaimi/AI_Travel/blob/548b719179f44c760120c173615538df2c3f5cee/bg.png"
 
     # Custom CSS to set the background image
     custom_css = f"""
