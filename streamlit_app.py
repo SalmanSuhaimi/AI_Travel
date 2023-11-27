@@ -322,23 +322,25 @@ def serpapi_image_search(query, num_results=5):
 #%%
 
 def homepage():
-
     # Content of the page
     header = st.container()
     description = st.container()
 
-    background_image_url = "https://github.com/SalmanSuhaimi/AI_Travel/blob/548b719179f44c760120c173615538df2c3f5cee/bg.png"
+    # File uploader to allow the user to upload a background image
+    uploaded_file = st.file_uploader("bg.png", type=["jpg", "jpeg", "png"])
 
     # Custom CSS to set the background image
-    custom_css = f"""
+    custom_css = """
         <style>
-            body {{
-                background-image: url('{background_image_url}');
+            body {
                 background-size: cover;
                 background-repeat: no-repeat;
-            }}
+            }
         </style>
     """
+
+    # Use st.markdown to inject the custom CSS
+    st.markdown(custom_css, unsafe_allow_html=True)
 
     # Use st.markdown to inject the custom CSS
     st.markdown(custom_css, unsafe_allow_html=True)
