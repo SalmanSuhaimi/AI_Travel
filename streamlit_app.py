@@ -322,6 +322,12 @@ def serpapi_image_search(query, num_results=5):
 
 #%%
 def homepage():
+        st.set_page_config(
+    page_title="Your App Title",
+    page_icon=":rocket:",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    background_image="https://raw.githubusercontent.com/SalmanSuhaimi/AI_Travel/main/bg.png",)
     header = st.container()
     description = st.container()
     
