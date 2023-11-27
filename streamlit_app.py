@@ -333,7 +333,7 @@ def homepage():
     description = st.container()
 
     github_gif_url = "https://raw.githubusercontent.com/SalmanSuhaimi/AI_Travel/main/giphy.gif"
-    st.image(github_gif_url, use_container_width=True)
+    st.markdown(f"![GIF]({github_gif_url})", unsafe_allow_html=True)
 
     h1_style = """
     <style>
