@@ -2,7 +2,7 @@ import streamlit as st
 import os
 from openai import OpenAI
 from streamlit_option_menu import option_menu
-from serpapi import GoogleSearch
+import requests
 
 serpapi_Api_key = st.secrets('SERPAPI_API_KEY')
 openai_api_key = st.secrets["OPENAI_API_KEY"]
@@ -284,6 +284,43 @@ def combine_ai(user_prompt):
     st.image(image, caption="Generated Image", use_column_width=True)
     st.write("Story:", plan)
 #%%
+@st.cache_data
+def serpapi_image_search(query, num_results=5):
+    
+    # Define SerpAPI parameters
+    params = {
+        "api_key": serpapi_Api_key,
+        "engine": "google_images",
+        "q": query,
+        "google_domain": "google.com",
+        "hl": "en",
+        "gl": "us",
+        "device": "desktop",
+    }
+
+    # Make the SerpAPI request
+    response = requests.get("https://serpapi.com/search.json", params=params).json()
+
+    # Debugging: Display the entire SerpAPI response
+    # st.write("SerpAPI Response:", response)
+
+    # Check if image results are present in the response
+    if "images_results" in response:
+        # Extract image results from the response
+        all_image_results = [result["original"] for result in response["images_results"]]
+
+        # Limit the results to the specified number
+        image_results = all_image_results[:num_results]
+
+        # Debugging: Display the image results
+        # st.write("Image Results:", image_results)
+
+        return image_results
+    else:
+        st.warning("No relevant images found.")
+        return []
+#%%
+
 def homepage():
 
     # Content of the page
@@ -390,38 +427,22 @@ def tourism_page():
     # Attraction AI part
     st.markdown("<h3 style='font-size: 30px;'>Explore Top Tourist Spots?</h3>", unsafe_allow_html=True)
     with st.form('attraction_form'):
-        attraction_question = st.text_input("Ask a city/country:", "", placeholder="e.g. Milan, Italy")
+        attraction_question = st.text_input("Ask a place/city/country:", "", placeholder="e.g. Milan, Italy")
         attraction_submit = st.form_submit_button('Get TravelMate AI Response')
 
     user_input2 = f'Attraction places for {attraction_question} in english'
 
     if attraction_submit:
-        params = {
-            "q": user_input2,
-            "api_key": serpapi_Api_key,
-            "engine": "google_images",
-            "num": 10,
-        }
+    # Call the serpapi_image_search function
+        image_results = serpapi_image_search(user_input2, num_results=2)
 
-        # Make the API request
-        search = GoogleSearch(params)
-        results = search.get_dict()
-
-        # Access the image search results
-        image_results = results.get("images_results", [])
-
-        # Display the results in Streamlit, limit to 4 images
+    # Display the image search results
         st.subheader(f"Image Search Results for: {user_input2}")
 
-        for index, result in enumerate(image_results, start=1):
-            if index > 2:
-                break  # Break out of the loop after displaying 4 images
-            image_url = result.get("original", None)
-            if image_url:
-                st.image(image_url, caption=f"Image {index}")
-                st.write("---")
-            else:
-                st.warning(f"No image URL found for result {index}")
+        for index, image_url in enumerate(image_results, start=1):
+            st.image(image_url, caption=f"Image {index}")
+            st.write("---")
+
         attraction_answer = attraction_place_ai(user_input2)
         st.text_area("TravelMate AI Response:", attraction_answer, height=1000)
 
