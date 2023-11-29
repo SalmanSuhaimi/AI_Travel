@@ -327,23 +327,16 @@ def get_img_as_base64(img_path):
     with open(img_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode("utf-8")
 #%%
-img = get_img_as_base64("bg.png")
+img = get_img_as_base64("background.png")
 #%%
 
 # Set the page configuration with the background image
 def set_background():
-    # Set the desired width and height for the background image
-    background_width = "1920px"
-    background_height = "1080px"
-
     style = f"""
         <style>
             .stApp {{
                 background-image: url('data:image/png;base64,{img}');
-                background-size: {background_width} {background_height};
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-position: top right;
+                background-size: cover;
             }}
         </style>
     """
