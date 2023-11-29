@@ -328,7 +328,7 @@ def homepage():
     header = st.container()
     description = st.container()
     
-     h1_style = """
+    h1_style = """
     <style>
         .app-title {
             font-size: 60px;
