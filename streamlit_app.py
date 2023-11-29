@@ -333,8 +333,8 @@ img = get_img_as_base64("bg.png")
 # Set the page configuration with the background image
 def set_background():
     # Set the desired width and height for the background image
-    background_width = "1024px"
-    background_height = "1024px"
+    background_width = "1920px"
+    background_height = "1080px"
 
     style = f"""
         <style>
