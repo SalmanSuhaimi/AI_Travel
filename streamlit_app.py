@@ -330,12 +330,15 @@ def get_img_as_base64(img_path):
 img = get_img_as_base64("bg.png")
 #%%
 
+# Set the page configuration with the background image
 def set_background():
     style = f"""
         <style>
             .stApp {{
                 background-image: url('data:image/png;base64,{img}');
                 background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
             }}
         </style>
     """
