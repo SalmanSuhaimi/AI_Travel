@@ -323,26 +323,6 @@ def serpapi_image_search(query, num_results=5):
         return []
 
 #%%
-def get_img_as_base64(img_path):
-    with open(img_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode("utf-8")
-#%%
-img = get_img_as_base64("background.png")
-#%%
-
-# Set the page configuration with the background image
-def set_background():
-    style = f"""
-        <style>
-            .stApp {{
-                background-image: url('data:image/png;base64,{img}');
-                background-size: cover;
-            }}
-        </style>
-    """
-    st.markdown(style, unsafe_allow_html=True)
-
-#%%
 def homepage():
 # Set the page configuration with the background image
     set_background()
