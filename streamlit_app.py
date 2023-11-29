@@ -328,13 +328,12 @@ def homepage():
     header = st.container()
     description = st.container()
     
-    
     h1_style = """
     <style>
         .app-title {
             font-size: 60px;
             font-family: 'Roboto', sans-serif;
-            text-align: centre;
+            text-align: center;
             color: #2B3A67;
             margin-top: 50px;
             margin-bottom: 20px;
