@@ -328,15 +328,15 @@ def homepage():
     header = st.container()
     description = st.container()
     
-    h1_style = """
+     h1_style = """
     <style>
         .app-title {
             font-size: 60px;
             font-family: 'Roboto', sans-serif;
             text-align: center;
             color: #2B3A67;
-            margin-top: 50px;
-            margin-bottom: 20px;
+            margin-top: 150px;
+            margin-bottom: 0px;
             white-space: nowrap;
         }
     </style>
@@ -358,10 +358,10 @@ def homepage():
     
     #subheader
     with description:
-       h5_style = "<style>.subh-title { color: #000000; font-size: 22px; text-align: center; }</style>"
+       h5_style = "<style>.subh-title { color: #000000; font-size: 30px; text-align: center; }</style>"
        st.markdown(h5_style, unsafe_allow_html=True)
        st.markdown("""<h5 class="subh-title">Your easy way to explore!</h5>""", unsafe_allow_html=True)
-       st.markdown("""<p class="subh-title">Travel Planner | Tourism Spots | Food Hunting | History </p>""", unsafe_allow_html=True)
+       st.markdown("""<h5 class="subh-title">Travel Planner | Tourism Spots | Food Hunting | History </h5>""", unsafe_allow_html=True)
 
 #%%
 travel = ['Adventure','Backpacking','Business','Educational','Eco-Tourism','Family','Group','Leisure','Luxury','Solo','Volunteer']
