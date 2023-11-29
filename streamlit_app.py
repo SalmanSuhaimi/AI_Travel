@@ -343,6 +343,7 @@ def set_background():
                 background-size: {background_width} {background_height};
                 background-repeat: no-repeat;
                 background-attachment: fixed;
+                background-position: top right;
             }}
         </style>
     """
