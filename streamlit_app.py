@@ -321,19 +321,31 @@ def serpapi_image_search(query, num_results=5):
         return []
 
 #%%
-
-    # Replace this URL with the raw URL of your hosted image on GitHub
-background_image_url = "https://raw.githubusercontent.com/SalmanSuhaimi/AI_Travel/main/bg.png"
+@st.experimental_memo
+def get_img_as_base64(file):
+    with open(file, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+#%%
+img = get_img_as_base64("bg.png")
 #%%
 
 def homepage():
 # Set the page configuration with the background image
-    
+    page_bg_img = f"""
+    <style>
+    [data-testid="stAppViewContainer"] > .main {{
+   background-image: url("data:image/png;base64,{img}");
+    background-size: 180%;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-attachment: local;
+    }}
+    """
     header = st.container()
     description = st.container()
-
-    github_gif_url = "https://raw.githubusercontent.com/SalmanSuhaimi/AI_Travel/main/giphy.gif"
-
+    
+    
     h1_style = """
     <style>
         .app-title {
