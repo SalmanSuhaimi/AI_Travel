@@ -332,12 +332,15 @@ img = get_img_as_base64("bg.png")
 
 # Set the page configuration with the background image
 def set_background():
+    # Set the desired width and height for the background image
+    background_width = "1024px"
+    background_height = "1024px"
+
     style = f"""
         <style>
             .stApp {{
                 background-image: url('data:image/png;base64,{img}');
-                background-size: 100%;
-                background-positon: centre
+                background-size: {background_width} {background_height};
                 background-repeat: no-repeat;
                 background-attachment: fixed;
             }}
