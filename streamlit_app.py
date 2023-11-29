@@ -325,7 +325,6 @@ def serpapi_image_search(query, num_results=5):
 #%%
 def homepage():
 # Set the page configuration with the background image
-    set_background()
     header = st.container()
     description = st.container()
     
