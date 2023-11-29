@@ -332,13 +332,12 @@ img = get_img_as_base64("bg.png")
 
 # Set the page configuration with the background image
 def set_background():
-    background_width = "600px"
-    background_height = "400px"
     style = f"""
         <style>
             .stApp {{
                 background-image: url('data:image/png;base64,{img}');
-                background-size: cover;
+                background-size: 100%;
+                background-positon: centre
                 background-repeat: no-repeat;
                 background-attachment: fixed;
             }}
@@ -359,7 +358,7 @@ def homepage():
         .app-title {
             font-size: 60px;
             font-family: 'Roboto', sans-serif;
-            text-align: center;
+            text-align: centre;
             color: #2B3A67;
             margin-top: 50px;
             margin-bottom: 20px;
