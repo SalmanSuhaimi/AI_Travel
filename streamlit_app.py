@@ -332,6 +332,8 @@ img = get_img_as_base64("bg.png")
 
 # Set the page configuration with the background image
 def set_background():
+    background_width = "800px"
+    background_height = "600px"
     style = f"""
         <style>
             .stApp {{
