@@ -3,6 +3,7 @@ import os
 from openai import OpenAI
 from streamlit_option_menu import option_menu
 import requests
+from PIL import Image
 import base64
 
 serpapi_Api_key = st.secrets["SERPAPI_API_KEY"]
@@ -322,27 +323,28 @@ def serpapi_image_search(query, num_results=5):
         return []
 
 #%%
-@st.experimental_memo
-def get_img_as_base64(file):
-    with open(file, "rb") as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
+def get_img_as_base64(img_path):
+    with open(img_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode("utf-8")
 #%%
 img = get_img_as_base64("bg.png")
 #%%
 
+def set_background():
+    style = f"""
+        <style>
+            .stApp {{
+                background-image: url('data:image/png;base64,{img}');
+                background-size: cover;
+            }}
+        </style>
+    """
+    st.markdown(style, unsafe_allow_html=True)
+
+#%%
 def homepage():
 # Set the page configuration with the background image
-    page_bg_img = f"""
-    <style>
-    [data-testid="stAppViewContainer"] > .main {{
-   background-image: url("data:image/png;base64,{img}");
-    background-size: 180%;
-    background-position: top left;
-    background-repeat: no-repeat;
-    background-attachment: local;
-    }}
-    """
+    set_background()
     header = st.container()
     description = st.container()
     
